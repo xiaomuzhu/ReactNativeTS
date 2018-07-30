@@ -1,7 +1,7 @@
 {
   "defaultSeverity": "warning",
   "extends": [
-    "tslint:recommended", 
+    "tslint:recommended",
     "tslint-react",
     "tslint-config-airbnb",
     "tslint-config-prettier"
@@ -13,6 +13,8 @@
     "import-name": false,
     "interface-name": false,
     "jsx-boolean-value": false,
+    "ordered-imports": false,
+    "ban-types":false,
     "jsx-no-multiline-js": false,
     "member-access": false,
     "no-console": [true, "debug", "dir", "log", "trace", "warn"],
