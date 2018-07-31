@@ -1,35 +1,45 @@
 import * as React from 'react'
-import { StatusBar, Text, View } from 'react-native'
-import { add } from './Actions'
-import { Counter } from './Reducers'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { FlatList, Text, View } from 'react-native'
+
 import rootReducers from '../../Redux/RootReducers'
+import { RootState } from './Reducers'
+import RootStyles from './Styles'
+import { topicRequest } from './Actions'
 
 export interface DispatchProps {
-  add: typeof add
+  getTopicList: typeof topicRequest
 }
 
 export interface StateProps {
-  root: Counter
+  root: RootState
 }
 
 type Props = DispatchProps & StateProps
 
 class RootScreen extends React.Component<Props> {
+  public componentDidMount() {
+    this.props.getTopicList({ page: 1, tab: 'all', limit: 20, mdrender: 'true' })
+  }
+
   render() {
+    const { root } = this.props
+
     return (
-      <View>
-        <StatusBar barStyle="dark-content" />
-        <Text>{this.props.root.age}</Text>
-        <Text>哈哈</Text>
+      <View style={RootStyles.container}>
+        <FlatList
+          data={root.topicList}
+          renderItem={({ item }) => <Text>{item.title}</Text>}
+          keyExtractor={item => item.id}
+        />
       </View>
     )
   }
 }
 
 const mapDispatchToProps = (dispatch: any): DispatchProps => ({
-  add: bindActionCreators(add, dispatch),
+  getTopicList: bindActionCreators(topicRequest, dispatch),
 })
 
 export type State = ReturnType<typeof rootReducers>

@@ -1,11 +1,10 @@
-// import { createAction, createStandardAction, action } from 'typesafe-actions';
 import { TopicRequest, TopicRequestSuccess, TopicRequestFailure } from './Constants'
 
 export interface RequestParams {
   page: number
   tab: string
-  limit?: number
-  mdrender?: string
+  limit: number
+  mdrender: string
 }
 
 export interface AuthorInfo {
@@ -38,37 +37,20 @@ export interface TopicRespose {
 export const topicRequest = (params: RequestParams) => {
   return {
     type: TopicRequest,
-    plyload: params,
+    payload: params,
   }
 }
 
 export const topicRequestSuccess = (data: TopicResposeData) => {
   return {
     type: TopicRequestSuccess,
-    plyload: data,
+    data,
   }
 }
 
 export const topicRequestFailure = (err: Object) => {
   return {
     type: TopicRequestFailure,
-    plyload: err,
-  }
-}
-
-// export const actions = {
-//     topicRequest: createStandardAction(TopicRequest)<RequestParams>(),
-//     topicRequestSuccess: createAction(TopicRequestSuccess, resolve => {
-//         return (data: TopicResposeData) => resolve(data);
-//     }),
-//     topicRequestFailure: createAction(TopicRequestFailure, resolve => {
-//         return (err: Object) => resolve(err);
-//     }),
-// }
-
-export const add = (age: string) => {
-  return {
-    type: 'add',
-    payload: age,
+    err,
   }
 }

@@ -15,6 +15,7 @@
     "jsx-boolean-value": false,
     "ordered-imports": false,
     "ban-types":false,
+    "jsx-no-lambda": false,
     "jsx-no-multiline-js": false,
     "member-access": false,
     "no-console": [true, "debug", "dir", "log", "trace", "warn"],

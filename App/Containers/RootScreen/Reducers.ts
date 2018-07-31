@@ -1,21 +1,44 @@
-import { add } from './Actions'
+import { TopicRequest, TopicRequestSuccess, TopicRequestFailure } from './Constants'
+import { topicRequest, topicRequestSuccess, topicRequestFailure, TopicItem } from './Actions'
 
-export type AddType = ReturnType<typeof add>
+export type GetTopicsActionType = ReturnType<typeof topicRequest>
+export type GetTopicsSuccessActionType = ReturnType<typeof topicRequestSuccess>
+export type GetTopicsFailureActionType = ReturnType<typeof topicRequestFailure>
 
-export interface Counter {
-  age: string
+export type RootActionType = GetTopicsActionType &
+  GetTopicsSuccessActionType &
+  GetTopicsFailureActionType
+
+export interface RootState {
+  isLoading: boolean
+  err: object | null
+  topicList: TopicItem[] | never[]
 }
 
-const initialState: Counter = {
-  age: '2',
+const initialState: RootState = {
+  isLoading: false,
+  err: null,
+  topicList: [],
 }
 
-const RootReducer = (state = initialState, action: AddType) => {
+const RootReducer = (state = initialState, action: RootActionType) => {
   switch (action.type) {
-    case 'add':
+    case TopicRequest:
       return {
         ...state,
-        age: action.payload,
+        isLoading: true,
+      }
+    case TopicRequestSuccess:
+      return {
+        ...state,
+        topicList: action.data,
+        isLoading: false,
+      }
+    case TopicRequestFailure:
+      return {
+        ...state,
+        isLoading: false,
+        err: action.err,
       }
     default:
       return state

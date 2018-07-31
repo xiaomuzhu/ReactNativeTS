@@ -13,18 +13,20 @@
     "xcode": "open ios/$npm_package_name.xcodeproj"
   },
   "dependencies": {
-    "@types/react-redux": "^6.0.5",
+    "apisauce": "^0.15.2",
+    "isomorphic-fetch": "^2.2.1",
     "react": "16.4.1",
     "react-native": "0.56.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "typesafe-actions": "^2.0.4"
+    "redux-saga": "^0.16.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.54",
     "@types/jest": "^23.3.1",
     "@types/react": "^16.4.7",
     "@types/react-native": "^0.56.4",
+    "@types/react-redux": "^6.0.5",
     "@types/react-test-renderer": "^16.0.1",
     "@types/webpack-env": "^1.13.6",
     "babel-jest": "23.4.2",
