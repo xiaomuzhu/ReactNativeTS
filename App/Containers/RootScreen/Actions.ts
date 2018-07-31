@@ -3,8 +3,8 @@ import { TopicRequest, TopicRequestSuccess, TopicRequestFailure } from './Consta
 export interface RequestParams {
   page: number
   tab: string
-  limit: number
-  mdrender: string
+  limit?: number
+  mdrender?: string
 }
 
 export interface AuthorInfo {
@@ -48,7 +48,7 @@ export const topicRequestSuccess = (data: TopicResposeData) => {
   }
 }
 
-export const topicRequestFailure = (err: Object) => {
+export const topicRequestFailure = (err: string | null) => {
   return {
     type: TopicRequestFailure,
     err,

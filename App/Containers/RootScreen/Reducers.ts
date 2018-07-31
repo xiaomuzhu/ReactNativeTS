@@ -11,7 +11,7 @@ export type RootActionType = GetTopicsActionType &
 
 export interface RootState {
   isLoading: boolean
-  err: object | null
+  err: string | null
   topicList: TopicItem[] | never[]
 }
 

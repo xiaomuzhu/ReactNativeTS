@@ -1,17 +1,11 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { call, put, takeLatest, all } from 'redux-saga/effects'
 import { ApiResponse } from 'apisauce'
 import { SagaIterator } from 'redux-saga'
 import RootApi from './../../Services/RootService'
-import {
-  TopicResposeData,
-  topicRequestSuccess,
-  topicRequestFailure,
-  RequestParams,
-  TopicRespose,
-} from './Actions'
+import { TopicResposeData, topicRequestSuccess, topicRequestFailure, TopicRespose } from './Actions'
 import { TopicRequest } from './Constants'
 
-export function* getTopicList(params: RequestParams): SagaIterator {
+export function* getTopicList(params: any): SagaIterator {
   const response: ApiResponse<TopicRespose> = yield call(RootApi().getTopicsRequest, params)
 
   if (response.ok) {
@@ -23,6 +17,5 @@ export function* getTopicList(params: RequestParams): SagaIterator {
 }
 
 export default function* watchTopicList() {
-  // @ts-ignore
-  yield takeLatest(TopicRequest, getTopicList)
+  yield all([takeLatest(TopicRequest, getTopicList)])
 }
