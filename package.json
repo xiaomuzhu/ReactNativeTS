@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "apisauce": "^0.15.2",
-    "isomorphic-fetch": "^2.2.1",
+    "immutable": "^4.0.0-rc.9",
     "react": "16.4.1",
     "react-native": "0.56.0",
     "react-redux": "^5.0.7",
@@ -44,7 +44,7 @@
     "tslint-config-airbnb": "^5.9.2",
     "tslint-config-prettier": "^1.14.0",
     "tslint-react": "^3.6.0",
-    "typescript": "^2.9.2"
+    "typescript": "^3.0.1"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

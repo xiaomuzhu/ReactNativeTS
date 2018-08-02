@@ -25,11 +25,10 @@ class RootScreen extends React.Component<Props> {
 
   render() {
     const { root } = this.props
-
     return (
       <View style={RootStyles.container}>
         <FlatList
-          data={root.topicList}
+          data={root.topicList.toJS()}
           renderItem={({ item }) => <Text>{item.title}</Text>}
           keyExtractor={item => item.id}
         />
