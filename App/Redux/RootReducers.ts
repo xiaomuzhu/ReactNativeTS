@@ -5,4 +5,6 @@ const rootReducers = combineReducers({
   root: RootReducer,
 })
 
+export type State = ReturnType<typeof rootReducers>
+
 export default rootReducers

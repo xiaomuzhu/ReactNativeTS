@@ -15,12 +15,7 @@ const RootApi = (url = baseURL): TopicApi => {
     timeout: 10000,
   })
 
-  const getTopicsRequest = (params: {
-    page: number
-    tab: string
-    limit?: number
-    mdrender?: string
-  }) => {
+  const getTopicsRequest = (params: RequestParams) => {
     return api.get<TopicResposeData>('topics', params)
   }
 

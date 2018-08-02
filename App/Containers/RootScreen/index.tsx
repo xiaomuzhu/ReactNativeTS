@@ -1,19 +1,20 @@
 import * as React from 'react'
-import { bindActionCreators } from 'redux'
+import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { FlatList, Text, View } from 'react-native'
 
-import rootReducers from '../../Redux/RootReducers'
-import { RootState } from './Reducers'
+import { TopicItemList, GetTopicsActionType } from './Reducers'
 import RootStyles from './Styles'
-import { topicRequest } from './Actions'
+import { topicRequest, RequestParams } from './Actions'
+import { makeSelectTopicList } from './Selectors'
+import { State } from '../../Redux/RootReducers'
 
 export interface DispatchProps {
   getTopicList: typeof topicRequest
 }
 
 export interface StateProps {
-  root: RootState
+  topicList: TopicItemList
 }
 
 type Props = DispatchProps & StateProps
@@ -24,11 +25,11 @@ class RootScreen extends React.Component<Props> {
   }
 
   render() {
-    const { root } = this.props
+    const { topicList } = this.props
     return (
       <View style={RootStyles.container}>
         <FlatList
-          data={root.topicList.toJS()}
+          data={topicList.toJS()}
           renderItem={({ item }) => <Text>{item.title}</Text>}
           keyExtractor={item => item.id}
         />
@@ -37,17 +38,13 @@ class RootScreen extends React.Component<Props> {
   }
 }
 
-const mapDispatchToProps = (dispatch: any): DispatchProps => ({
-  getTopicList: bindActionCreators(topicRequest, dispatch),
+const mapDispatchToProps = (dispatch: Dispatch<GetTopicsActionType>): DispatchProps => ({
+  getTopicList: (params: RequestParams) => dispatch(topicRequest(params)),
 })
 
-export type State = ReturnType<typeof rootReducers>
-
-const mapStateToProps = (state: State): StateProps => {
-  return {
-    root: state.root,
-  }
-}
+const mapStateToProps = (state: State) => ({
+  topicList: makeSelectTopicList(state),
+})
 
 export default connect(
   mapStateToProps,

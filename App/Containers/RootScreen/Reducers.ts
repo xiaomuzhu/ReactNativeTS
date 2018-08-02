@@ -27,7 +27,7 @@ export interface ITopicItem extends TopicItem {
 }
 
 type TopicItemRecord = Immutable.Record.Factory<ITopicItem>
-type TopicItemList = Immutable.List<TopicItemRecord> | Immutable.List<never>
+export type TopicItemList = Immutable.List<TopicItemRecord> | Immutable.List<never>
 
 export interface ITopicState {
   isLoading: boolean
