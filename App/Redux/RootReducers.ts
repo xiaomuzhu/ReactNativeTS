@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import RootReducer from '../Containers/RootScreen/Reducers'
+import HomeReducer from '../Containers/HomeScreen/Reducers'
+import { navReducer } from '../Navigation/ReduxNavigation'
 
 const rootReducers = combineReducers({
-  root: RootReducer,
+  nav: navReducer,
+  home: HomeReducer,
 })
 
 export type State = ReturnType<typeof rootReducers>

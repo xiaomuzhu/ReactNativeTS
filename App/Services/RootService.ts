@@ -1,4 +1,4 @@
-import { TopicResposeData, RequestParams } from './../Containers/RootScreen/Actions'
+import { TopicResposeData, RequestParams } from './../Containers/HomeScreen/Actions'
 import { baseURL } from './../Configs/url'
 import { ApiResponse, create } from 'apisauce'
 

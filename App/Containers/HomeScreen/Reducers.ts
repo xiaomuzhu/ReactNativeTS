@@ -14,7 +14,7 @@ export type GetTopicsActionType = ReturnType<typeof topicRequest>
 export type GetTopicsSuccessActionType = ReturnType<typeof topicRequestSuccess>
 export type GetTopicsFailureActionType = ReturnType<typeof topicRequestFailure>
 
-export type RootActionType = GetTopicsActionType &
+export type HomeActionType = GetTopicsActionType &
   GetTopicsSuccessActionType &
   GetTopicsFailureActionType
 
@@ -41,12 +41,12 @@ const InitialState = Immutable.Record({
   topicList: Immutable.List([]),
 } as ITopicState)
 
-export class RootState extends InitialState {}
+export class HomeState extends InitialState {}
 
-export const rootState = new RootState()
+export const homeState = new HomeState()
 
-// root reducer
-const RootReducer = (state = rootState, action: RootActionType) => {
+// home reducer
+const HomeReducer = (state = homeState, action: HomeActionType) => {
   switch (action.type) {
     case TopicRequest:
       return state.set('isLoading', true)
@@ -60,4 +60,4 @@ const RootReducer = (state = rootState, action: RootActionType) => {
   }
 }
 
-export default RootReducer
+export default HomeReducer

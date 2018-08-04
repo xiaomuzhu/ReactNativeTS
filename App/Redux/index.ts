@@ -4,10 +4,14 @@ import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import rootReducers from './RootReducers'
 import rootSagas from '../Sagas'
+import { navigationMiddleware } from './../Navigation/ReduxNavigation'
 
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware()
-  const store = createStore(rootReducers, composeWithDevTools(applyMiddleware(sagaMiddleware)))
+  const store = createStore(
+    rootReducers,
+    composeWithDevTools(applyMiddleware(sagaMiddleware, navigationMiddleware)),
+  )
 
   sagaMiddleware.run(rootSagas)
   store.runSaga = sagaMiddleware.run

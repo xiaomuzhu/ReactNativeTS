@@ -1,52 +1,29 @@
 import * as React from 'react'
+import { View, Text, Button } from 'react-native'
+import { NavigationActions, NavigationAction, NavigationNavigateAction } from 'react-navigation'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import { FlatList, Text, View } from 'react-native'
 
-import { TopicItemList, GetTopicsActionType } from './Reducers'
-import RootStyles from './Styles'
-import { topicRequest, RequestParams } from './Actions'
-import { makeSelectTopicList } from './Selectors'
-import { State } from '../../Redux/RootReducers'
-
-export interface DispatchProps {
-  getTopicList: typeof topicRequest
-}
-
-export interface StateProps {
-  topicList: TopicItemList
-}
-
-type Props = DispatchProps & StateProps
-
-class RootScreen extends React.Component<Props> {
-  public componentDidMount() {
-    this.props.getTopicList({ page: 1, tab: 'all', limit: 20, mdrender: 'true' })
-  }
-
+class RootScreen extends React.PureComponent<DispatchProps> {
   render() {
-    const { topicList } = this.props
     return (
-      <View style={RootStyles.container}>
-        <FlatList
-          data={topicList.toJS()}
-          renderItem={({ item }) => <Text>{item.title}</Text>}
-          keyExtractor={item => item.id}
-        />
+      <View>
+        <Button title="列表" onPress={this.props.gotoHome} />
+        <Text>我是你爹</Text>
       </View>
     )
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<GetTopicsActionType>): DispatchProps => ({
-  getTopicList: (params: RequestParams) => dispatch(topicRequest(params)),
-})
+export interface DispatchProps {
+  gotoHome: () => NavigationNavigateAction
+}
 
-const mapStateToProps = (state: State) => ({
-  topicList: makeSelectTopicList(state),
+const mapDispatchToProps = (dispatch: Dispatch<NavigationAction>) => ({
+  gotoHome: () => dispatch(NavigationActions.navigate({ routeName: 'Home' })),
 })
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(RootScreen)
