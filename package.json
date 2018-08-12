@@ -13,9 +13,9 @@
     "xcode": "open ios/$npm_package_name.xcodeproj"
   },
   "dependencies": {
-    "@types/react-navigation": "^2.0.12",
     "apisauce": "^0.15.2",
     "immutable": "^4.0.0-rc.9",
+    "native-base": "^2.7.2",
     "react": "16.4.1",
     "react-native": "0.56.0",
     "react-navigation": "^2.10.0",
@@ -28,6 +28,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.54",
     "@types/jest": "^23.3.1",
+    "@types/react-navigation": "^2.0.12",
     "@types/react": "^16.4.7",
     "@types/react-native": "^0.56.4",
     "@types/react-redux": "^6.0.5",

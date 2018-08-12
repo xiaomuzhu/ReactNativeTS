@@ -1,14 +1,34 @@
-import { createStackNavigator } from 'react-navigation'
+import { createStackNavigator, createSwitchNavigator } from 'react-navigation'
 import HomeScreen from '../Containers/HomeScreen'
-import RootScreen from '../Containers/RootScreen/index'
+import LoginScreen from '../Containers/LoginScreen'
 
-const RootNavigator = createStackNavigator(
+const AppStack = createStackNavigator(
   {
     Home: { screen: HomeScreen },
-    Root: { screen: RootScreen },
   },
   {
-    initialRouteName: 'Root',
+    initialRouteName: 'Home',
+    headerMode: 'float',
+  },
+)
+
+const AuthStack = createStackNavigator(
+  {
+    Login: { screen: LoginScreen },
+  },
+  {
+    initialRouteName: 'Login',
+    headerMode: 'none',
+  },
+)
+
+const RootNavigator = createSwitchNavigator(
+  {
+    App: AppStack,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: 'Auth',
   },
 )
 

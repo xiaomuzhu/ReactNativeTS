@@ -17,9 +17,12 @@ export interface StateProps {
   topicList: TopicItemList
 }
 
-type Props = DispatchProps & StateProps
+type HomeProps = DispatchProps & StateProps
 
-class HomeScreen extends React.Component<Props> {
+class HomeScreen extends React.Component<HomeProps> {
+  static navigationOptions = {
+    title: 'Home',
+  }
   public componentDidMount() {
     this.props.getTopicList({ page: 1, tab: 'all', limit: 20, mdrender: 'true' })
   }
