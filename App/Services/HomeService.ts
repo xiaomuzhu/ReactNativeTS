@@ -1,12 +1,12 @@
-import { TopicResposeData, RequestParams } from './../Containers/HomeScreen/Actions'
-import { baseURL } from './../Configs/url'
+import { TopicResposeData, RequestParams } from '../Containers/HomeScreen/Actions'
+import { baseURL } from '../Configs/url'
 import { ApiResponse, create } from 'apisauce'
 
 export interface TopicApi {
   getTopicsRequest: (params: RequestParams) => Promise<ApiResponse<TopicResposeData>>
 }
 
-const RootApi = (url = baseURL): TopicApi => {
+const HomeApi = (url = baseURL): TopicApi => {
   const api = create({
     baseURL: url,
     headers: {
@@ -22,4 +22,4 @@ const RootApi = (url = baseURL): TopicApi => {
   return { getTopicsRequest }
 }
 
-export default RootApi
+export default HomeApi

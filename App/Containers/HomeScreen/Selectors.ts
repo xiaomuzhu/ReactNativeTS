@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect'
 import { State } from './../../Redux/RootReducers'
 
-const selectRoot = (state: State) => state.home
+const selectHome = (state: State) => state.home
 
-const makeSelectTopicList = createSelector([selectRoot], rootState => rootState.topicList)
+const makeSelectTopicList = createSelector([selectHome], homeState => homeState.topicList)
 
-export { selectRoot, makeSelectTopicList }
+export { selectHome, makeSelectTopicList }

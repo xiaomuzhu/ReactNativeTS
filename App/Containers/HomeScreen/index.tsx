@@ -9,11 +9,11 @@ import { topicRequest, RequestParams } from './Actions'
 import { makeSelectTopicList } from './Selectors'
 import { State } from '../../Redux/RootReducers'
 
-export interface DispatchProps {
+interface DispatchProps {
   getTopicList: typeof topicRequest
 }
 
-export interface StateProps {
+interface StateProps {
   topicList: TopicItemList
 }
 
