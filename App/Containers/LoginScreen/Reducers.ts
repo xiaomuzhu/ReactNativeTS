@@ -1,4 +1,4 @@
-import { LoginRequest, LoginRequestSuccess } from './Constants'
+import { LoginRequest, LoginRequestSuccess, LoginRequestFailure } from './Constants'
 import { loginRequest, loginRequestSuccess, loginRequestFailure, LoginInfoParams } from './Actions'
 import * as Immutable from 'immutable'
 
@@ -13,7 +13,7 @@ export type LoginActionType = PostLoginActionType &
 
 // initial State Type
 
-type LoginInfoRecord = Immutable.Record.Factory<LoginInfoParams>
+export type LoginInfoRecord = Immutable.Record.Factory<LoginInfoParams>
 
 export interface ILoginState {
   isLoading: boolean
@@ -39,7 +39,7 @@ const LoginReducer = (state = loginState, action: LoginActionType) => {
     case LoginRequestSuccess:
       const data = Immutable.fromJS(action.data) as LoginInfoRecord
       return state.set('isLoading', false).set('loginInfo', data)
-    case LoginRequestSuccess:
+    case LoginRequestFailure:
       return state.set('isLoading', false).set('err', action.err)
     default:
       return state

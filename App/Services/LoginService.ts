@@ -1,12 +1,13 @@
-import { LoginResposeData, LoginInfoParams } from './../Containers/LoginScreen/Actions'
-import { baseURL } from '../Configs/url'
 import { ApiResponse, create } from 'apisauce'
+
+import { LoginResposeData, LoginInfoParams } from './../Containers/LoginScreen/Actions'
+import { loginURL } from './../Configs/url'
 
 export interface TopicApi {
   postLoginRequest: (params: LoginInfoParams) => Promise<ApiResponse<LoginResposeData>>
 }
 
-const LoginApi = (url = baseURL): TopicApi => {
+const LoginApi = (url = loginURL): TopicApi => {
   const api = create({
     baseURL: url,
     headers: {

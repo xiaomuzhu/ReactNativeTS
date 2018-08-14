@@ -1,15 +1,33 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import { Container, Button, Form, Item, Input, Text, View, Icon } from 'native-base'
+import { Container, Button, Form, Item, Input, Text, View, Icon, Spinner, Toast } from 'native-base'
+import { NavigationActions, NavigationAction, NavigationNavigateAction } from 'react-navigation'
 import { State } from '../../Redux/RootReducers'
 import LoginStyles from './Styles'
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native'
 import { makeSelectError, makeSelectLoading, makeSelectLoginInfo } from './Selectors'
-import { PostLoginActionType } from './Reducers'
+import { PostLoginActionType, LoginInfoRecord } from './Reducers'
 import { LoginInfoParams, loginRequest } from './Actions'
 
 class LoginScreen extends React.PureComponent<LoginProps, LoginState> {
+  public static getDerivedStateFromProps(nextProps: LoginProps) {
+    if (nextProps.err) {
+      Toast.show({
+        text: nextProps.err,
+        type: 'danger',
+      })
+    } else if (nextProps.info) {
+      Toast.show({
+        text: '登陆成功',
+        type: 'success',
+      })
+      nextProps.gotoHome()
+    }
+
+    return null
+  }
+
   public state = {
     username: '',
     password: '',
@@ -18,6 +36,8 @@ class LoginScreen extends React.PureComponent<LoginProps, LoginState> {
   constructor(props: LoginProps) {
     super(props)
     this.changeUsername = this.changeUsername.bind(this)
+    this.changePassword = this.changePassword.bind(this)
+    this.login = this.login.bind(this)
   }
 
   /**
@@ -46,13 +66,13 @@ class LoginScreen extends React.PureComponent<LoginProps, LoginState> {
       username: this.state.username,
       password: this.state.password,
     })
-
-    this.props
   }
 
   render() {
+    const { isLoading } = this.props
     return (
       <Container style={LoginStyles.container}>
+        {isLoading ? <Spinner /> : <Text />}
         <Form style={LoginStyles.form}>
           <Item>
             <Icon style={{ fontSize: 16 }} active type="SimpleLineIcons" name="user" />
@@ -75,18 +95,27 @@ class LoginScreen extends React.PureComponent<LoginProps, LoginState> {
 
 interface DispatchProps {
   login: typeof loginRequest
+  gotoHome: () => NavigationNavigateAction
 }
 
-type LoginProps = DispatchProps
+interface StateProps {
+  err: null | string
+  isLoading: boolean
+  info?: LoginInfoRecord
+}
+
+type LoginProps = DispatchProps & StateProps
 
 interface LoginState {
   password: string
   username: string
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<PostLoginActionType>): DispatchProps => ({
+const mapDispatchToProps = (
+  dispatch: Dispatch<PostLoginActionType | NavigationAction>,
+): DispatchProps => ({
   login: (params: LoginInfoParams) => dispatch(loginRequest(params)),
-  // gotoHomeScreen: () =>
+  gotoHome: () => dispatch(NavigationActions.navigate({ routeName: 'Home' })),
 })
 
 const mapStateToProps = (state: State) => ({
