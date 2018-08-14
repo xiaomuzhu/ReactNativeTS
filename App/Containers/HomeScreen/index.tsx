@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import { FlatList, Text, View } from 'react-native'
+import { Container, List } from 'native-base'
 
 import { TopicItemList, GetTopicsActionType } from './Reducers'
 import HomeStyles from './Styles'
 import { topicRequest, RequestParams } from './Actions'
 import { makeSelectTopicList } from './Selectors'
 import { State } from '../../Redux/RootReducers'
+import TopicListItem from '../../Components/ListItem'
 
 interface DispatchProps {
   getTopicList: typeof topicRequest
@@ -29,14 +30,14 @@ class HomeScreen extends React.Component<HomeProps> {
 
   render() {
     const { topicList } = this.props
+
     return (
-      <View style={HomeStyles.container}>
-        <FlatList
-          data={topicList.toJS()}
-          renderItem={({ item }) => <Text>{item.title}</Text>}
-          keyExtractor={item => item.id}
+      <Container style={HomeStyles.container}>
+        <List
+          dataArray={topicList.toJS()}
+          renderRow={item => <TopicListItem author={item.author} title={item.title} />}
         />
-      </View>
+      </Container>
     )
   }
 }

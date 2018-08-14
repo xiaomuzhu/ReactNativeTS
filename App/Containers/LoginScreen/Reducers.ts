@@ -1,6 +1,7 @@
+import * as Immutable from 'immutable'
+
 import { LoginRequest, LoginRequestSuccess, LoginRequestFailure } from './Constants'
 import { loginRequest, loginRequestSuccess, loginRequestFailure, LoginInfoParams } from './Actions'
-import * as Immutable from 'immutable'
 
 // Action Type
 export type PostLoginActionType = ReturnType<typeof loginRequest>

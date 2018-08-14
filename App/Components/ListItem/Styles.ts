@@ -1,9 +1,7 @@
 import { StyleSheet, ViewStyle } from 'react-native'
 const HomeStyles = StyleSheet.create({
-  container: {
+  item: {
     flex: 1,
-    width: '100%',
-    height: '100%',
   } as ViewStyle,
 })
 
