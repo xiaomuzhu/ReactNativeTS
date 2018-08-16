@@ -9,6 +9,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "studio": "open -a /Applications/Android\\ Studio.app ./android/",
     "test": "jest",
+    "test:watch": "jest --watchAll",
     "tsc": "tsc -p .",
     "xcode": "open ios/$npm_package_name.xcodeproj"
   },
@@ -28,21 +29,21 @@
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.54",
     "@types/jest": "^23.3.1",
-    "@types/react-navigation": "^2.0.12",
     "@types/react": "^16.4.7",
     "@types/react-native": "^0.56.4",
+    "@types/react-navigation": "^2.0.12",
     "@types/react-redux": "^6.0.5",
     "@types/react-test-renderer": "^16.0.1",
     "@types/webpack-env": "^1.13.6",
-    "babel-jest": "23.4.2",
-    "babel-preset-react-native": "^5",
+    "babel-core": "^7.0.0-beta.54",
     "husky": "^0.14.3",
-    "jest": "23.4.2",
+    "jest": "^23.5.0",
     "lint-staged": "^7.2.0",
     "prettier": "^1.13.7",
     "react-native-typescript-transformer": "^1.2.10",
     "react-test-renderer": "16.4.1",
     "redux-devtools-extension": "^2.13.5",
+    "redux-saga-test-plan": "^3.7.0",
     "remote-redux-devtools": "^0.5.12",
     "ts-jest": "^23.0.1",
     "tslint": "^5.11.0",
@@ -53,8 +54,20 @@
   },
   "jest": {
     "preset": "react-native",
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-navigation|react-navigation-redux-helpers)"
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "modulePaths": [
+      "<rootDir>"
     ]
   },
   "lint-staged": {

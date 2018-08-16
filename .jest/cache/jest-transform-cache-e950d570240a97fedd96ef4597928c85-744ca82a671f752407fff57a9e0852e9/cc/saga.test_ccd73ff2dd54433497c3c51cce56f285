@@ -1,0 +1,37 @@
+42e31d648c1715025272320e70b0b8b4
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+const Actions_1 = require("./../Actions");
+
+require("jest");
+
+const effects_1 = require("redux-saga/effects");
+
+const Sagas_1 = require("../Sagas");
+
+const HomeService_1 = require("../../../Services/HomeService");
+
+describe('getTopicList Saga', () => {
+  let getTopicListGenerator;
+  const params = {
+    page: 1,
+    tab: 'all',
+    limit: 20,
+    mdrender: 'true'
+  };
+  beforeEach(() => {
+    getTopicListGenerator = Sagas_1.getTopicList(params);
+    const selectDescriptor = getTopicListGenerator.next(HomeService_1.default().getTopicsRequest, params);
+    expect(selectDescriptor).toMatchSnapshot();
+  });
+  it('should dispatch the topicRequestSuccess action if it requests the data successfully', () => {
+    const response = [];
+    const putDescriptor = getTopicListGenerator.next(response).value;
+    console.log(putDescriptor);
+    expect(putDescriptor).toEqual(effects_1.put(Actions_1.topicRequestSuccess(response)));
+  });
+});

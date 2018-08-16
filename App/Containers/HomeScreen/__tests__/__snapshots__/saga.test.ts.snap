@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getTopicList Saga should dispatch the reposLoaded action if it requests the data successfully 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      Object {
+        "limit": 20,
+        "mdrender": "true",
+        "page": 1,
+        "tab": "all",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;
+
+exports[`getTopicList Saga should dispatch the topicRequestSuccess action if it requests the data successfully 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      Object {
+        "limit": 20,
+        "mdrender": "true",
+        "page": 1,
+        "tab": "all",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;

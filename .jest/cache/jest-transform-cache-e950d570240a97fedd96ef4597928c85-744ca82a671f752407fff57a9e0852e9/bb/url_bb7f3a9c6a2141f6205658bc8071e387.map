@@ -1,0 +1,1 @@
+{"version":3,"sources":["url.ts"],"names":[],"mappings":";;;;;AAAa,OAAA,CAAA,OAAA,GAAU,6BAAV;AACA,OAAA,CAAA,QAAA,GAAW,+DAAX","sourcesContent":["export const baseURL = 'https://cnodejs.org/api/v1/'\nexport const loginURL = 'https://www.easy-mock.com/mock/5b67173513575876ecdc77eb/rnts/'\n"],"sourceRoot":""}

@@ -1,0 +1,29 @@
+2e1efb0ec5b78b922106f3d413f0c77c
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+const Constants_1 = require("./Constants");
+
+exports.topicRequest = params => {
+  return {
+    type: Constants_1.TopicRequest,
+    payload: params
+  };
+};
+
+exports.topicRequestSuccess = data => {
+  return {
+    type: Constants_1.TopicRequestSuccess,
+    data
+  };
+};
+
+exports.topicRequestFailure = err => {
+  return {
+    type: Constants_1.TopicRequestFailure,
+    err
+  };
+};

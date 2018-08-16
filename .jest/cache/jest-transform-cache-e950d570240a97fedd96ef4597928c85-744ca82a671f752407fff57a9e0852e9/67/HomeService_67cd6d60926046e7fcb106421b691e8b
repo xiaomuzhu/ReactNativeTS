@@ -1,0 +1,30 @@
+dc3f0f6b8170a44c1785661907b3738f
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+const url_1 = require("../Configs/url");
+
+const apisauce_1 = require("apisauce");
+
+const HomeApi = (url = url_1.baseURL) => {
+  const api = apisauce_1.create({
+    baseURL: url,
+    headers: {
+      'Cache-Control': 'no-cache'
+    },
+    timeout: 10000
+  });
+
+  const getTopicsRequest = params => {
+    return api.get('topics', params);
+  };
+
+  return {
+    getTopicsRequest
+  };
+};
+
+exports.default = HomeApi;

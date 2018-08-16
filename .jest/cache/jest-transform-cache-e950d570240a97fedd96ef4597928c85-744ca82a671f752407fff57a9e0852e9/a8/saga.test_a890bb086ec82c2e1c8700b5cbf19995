@@ -1,0 +1,27 @@
+cb39631253fdc9a99c13c9331a33fb38
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+require("jest");
+
+const Sagas_1 = require("../Sagas");
+
+describe('getTopicList Saga', () => {
+  let getTopicListGenerator;
+  beforeEach(() => {
+    getTopicListGenerator = Sagas_1.getTopicList({
+      page: 1,
+      tab: 'all',
+      limit: 20,
+      mdrender: 'true'
+    });
+    const selectDescriptor = getTopicListGenerator.next().value;
+    console.log('====================================');
+    console.log(selectDescriptor);
+    console.log('====================================');
+    expect(selectDescriptor).toMatchSnapshot();
+  });
+});

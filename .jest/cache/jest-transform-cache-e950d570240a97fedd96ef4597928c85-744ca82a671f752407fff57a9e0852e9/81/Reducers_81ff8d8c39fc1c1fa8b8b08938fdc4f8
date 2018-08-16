@@ -1,0 +1,40 @@
+f254dc183dde1724357e02cd1b4c6da1
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+const Immutable = require("immutable");
+
+const Constants_1 = require("./Constants");
+
+const InitialState = Immutable.Record({
+  isLoading: false,
+  err: null,
+  topicList: Immutable.List([])
+});
+
+class HomeState extends InitialState {}
+
+exports.HomeState = HomeState;
+exports.homeState = new HomeState();
+
+const HomeReducer = (state = exports.homeState, action) => {
+  switch (action.type) {
+    case Constants_1.TopicRequest:
+      return state.set('isLoading', true);
+
+    case Constants_1.TopicRequestSuccess:
+      const data = Immutable.fromJS(action.data);
+      return state.set('isLoading', false).set('topicList', data);
+
+    case Constants_1.TopicRequestFailure:
+      return state.set('isLoading', false).set('err', action.err);
+
+    default:
+      return state;
+  }
+};
+
+exports.default = HomeReducer;

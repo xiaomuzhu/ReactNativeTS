@@ -1,0 +1,27 @@
+fa3ee256d08f6c8bfaa365a4da955c12
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+const Actions_1 = require("./../Actions");
+
+require("jest");
+
+const effects_1 = require("redux-saga/effects");
+
+describe('getTopicList Saga', () => {
+  let getTopicListGenerator;
+  it('should dispatch the topicRequestSuccess action if it requests the data successfully', () => {
+    const response = [];
+    const putDescriptor = getTopicListGenerator.next({
+      page: 1,
+      tab: 'all',
+      limit: 20,
+      mdrender: 'true'
+    }).value;
+    console.log(putDescriptor);
+    expect(putDescriptor).toEqual(effects_1.put(Actions_1.topicRequestSuccess(response)));
+  });
+});

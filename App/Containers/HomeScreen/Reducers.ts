@@ -14,9 +14,9 @@ export type GetTopicsActionType = ReturnType<typeof topicRequest>
 export type GetTopicsSuccessActionType = ReturnType<typeof topicRequestSuccess>
 export type GetTopicsFailureActionType = ReturnType<typeof topicRequestFailure>
 
-export type HomeActionType = GetTopicsActionType &
-  GetTopicsSuccessActionType &
-  GetTopicsFailureActionType
+export type HomeActionType = GetTopicsSuccessActionType &
+  GetTopicsFailureActionType &
+  GetTopicsActionType
 
 // initial State Type
 

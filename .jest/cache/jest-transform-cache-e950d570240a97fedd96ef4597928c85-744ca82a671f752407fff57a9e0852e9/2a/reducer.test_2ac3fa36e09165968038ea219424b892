@@ -1,0 +1,40 @@
+8b2dc7e8ac17036f43ede5cef789a574
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+require("jest");
+
+const Immutable = require("immutable");
+
+const Constants_1 = require("./../Constants");
+
+const Reducers_1 = require("./../Reducers");
+
+const Constants_2 = require("../Constants");
+
+test(Constants_1.TopicRequest, () => {
+  expect(Reducers_1.default(Reducers_1.homeState, {
+    type: Constants_1.TopicRequest,
+    payload: {
+      page: 1,
+      tab: 'all',
+      limit: 20,
+      mdrender: 'true'
+    }
+  })).toEqual(Reducers_1.homeState.set('isLoading', true));
+});
+test(Constants_2.TopicRequestSuccess, () => {
+  expect(Reducers_1.default(Reducers_1.homeState, {
+    type: Constants_2.TopicRequestSuccess,
+    data: []
+  })).toEqual(Reducers_1.homeState.set('isLoading', false).set('topicList', Immutable.fromJS([])));
+});
+test(Constants_1.TopicRequestFailure, () => {
+  expect(Reducers_1.default(Reducers_1.homeState, {
+    type: Constants_1.TopicRequestFailure,
+    err: 'err'
+  })).toEqual(Reducers_1.homeState.set('isLoading', false).set('err', 'err'));
+});

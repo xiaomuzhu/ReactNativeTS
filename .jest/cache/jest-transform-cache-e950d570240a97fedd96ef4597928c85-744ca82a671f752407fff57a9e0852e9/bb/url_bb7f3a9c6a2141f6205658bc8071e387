@@ -1,0 +1,8 @@
+0afb858cb26743a08b5ef22211462ca4
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.baseURL = 'https://cnodejs.org/api/v1/';
+exports.loginURL = 'https://www.easy-mock.com/mock/5b67173513575876ecdc77eb/rnts/';

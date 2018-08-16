@@ -1,0 +1,22 @@
+00caed4a591f8a8a1c9b6ff3c8de1a39
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+const Constants_1 = require("./../Constants");
+
+const Reducers_1 = require("./../Reducers");
+
+test(Constants_1.TopicRequest, () => {
+  expect(Reducers_1.default(Reducers_1.homeState, {
+    type: Constants_1.TopicRequest,
+    payload: {
+      page: 1,
+      tab: 'all',
+      limit: 20,
+      mdrender: 'true'
+    }
+  })).toEqual(Reducers_1.homeState.set('isLoading', true));
+});

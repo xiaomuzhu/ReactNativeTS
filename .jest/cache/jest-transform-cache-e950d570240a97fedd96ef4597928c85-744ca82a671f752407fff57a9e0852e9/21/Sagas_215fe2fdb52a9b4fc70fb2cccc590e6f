@@ -1,0 +1,34 @@
+b8066b4a1acc746e8c1df54c7b19cc93
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+const effects_1 = require("redux-saga/effects");
+
+const HomeService_1 = require("./../../Services/HomeService");
+
+const Actions_1 = require("./Actions");
+
+const Constants_1 = require("./Constants");
+
+function* getTopicList(params) {
+  console.log(params, '~~~~~');
+  const response = yield effects_1.call(HomeService_1.default().getTopicsRequest, params);
+
+  if (response.ok) {
+    const data = response.data.data;
+    yield effects_1.put(Actions_1.topicRequestSuccess(data));
+  } else {
+    yield effects_1.put(Actions_1.topicRequestFailure(response.problem));
+  }
+}
+
+exports.getTopicList = getTopicList;
+
+function* watchTopicList() {
+  yield effects_1.all([effects_1.takeLatest(Constants_1.TopicRequest, getTopicList)]);
+}
+
+exports.default = watchTopicList;
