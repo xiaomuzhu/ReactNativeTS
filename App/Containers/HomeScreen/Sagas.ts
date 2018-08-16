@@ -5,6 +5,13 @@ import HomeApi from './../../Services/HomeService'
 import { TopicResposeData, topicRequestSuccess, topicRequestFailure, TopicRespose } from './Actions'
 import { TopicRequest } from './Constants'
 
+/**
+ * 获取首页列表
+ *
+ * @export
+ * @param {*} params
+ * @returns {SagaIterator}
+ */
 export function* getTopicList(params: any): SagaIterator {
   const response: ApiResponse<TopicRespose> = yield call(HomeApi().getTopicsRequest, params)
 

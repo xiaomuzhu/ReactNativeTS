@@ -19,13 +19,14 @@ export type HomeActionType = GetTopicsSuccessActionType &
   GetTopicsActionType
 
 // initial State Type
-
 type AuthorInfoRecord = Immutable.Record.Factory<AuthorInfo>
 
+// 定义单个帖子的类型
 export interface ITopicItem extends TopicItem {
   AuthorInfo: AuthorInfoRecord
 }
 
+// 定义帖子列表的类型
 type TopicItemRecord = Immutable.Record.Factory<ITopicItem>
 export type TopicItemList = Immutable.List<TopicItemRecord> | Immutable.List<never>
 

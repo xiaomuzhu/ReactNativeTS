@@ -20,6 +20,12 @@ interface StateProps {
 
 type HomeProps = DispatchProps & StateProps
 
+/**
+ * cnode首页
+ *
+ * @class HomeScreen
+ * @extends {React.Component<HomeProps>}
+ */
 class HomeScreen extends React.Component<HomeProps> {
   static navigationOptions = {
     title: 'Home',

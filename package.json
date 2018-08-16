@@ -2,6 +2,7 @@
   "name": "ReactNativeTS",
   "version": "0.0.1",
   "private": true,
+  "description": "A RN boilerplate with React, Redux and Typescript",
   "scripts": {
     "format": "prettier --write '{.,__tests__,src/**}/*.{js,jsx,ts,tsx}'",
     "lint": "tslint -p .",
